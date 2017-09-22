@@ -23,16 +23,17 @@ def first_deal(user):
 
     user_total = card_values[first_card] + card_values[second_card]
     if user == 'dealer':
-        print "The dealer got " + first_card + " and " + second_card + " for a value of " + str(user_total)
+        print "The dealer got " + first_card
     else:
         print "You got cards " + first_card + " and " + second_card + " for a value of " + str(user_total)
-    return user_total
+    return first_card, second_card, user_total
 
 def game():
     game_cards = 4 * ['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
     cards.extend(game_cards)
 
-    user_total = first_deal('user')
+    user_first_card, user_second_card, user_total = first_deal('user')
+    dealer_first_card, dealer_second_card, dealer_total = first_deal('dealer')
 
     response = 'y'
     while user_total < 21 and response == 'y':
@@ -49,6 +50,5 @@ def game():
         print "You got card " + next_card + ". Your total is now " + str(user_total) + ". You lose sucker!!!!"
     else:
         print "Your total is still " + str(user_total)
-        dealer_total = first_deal('dealer')
-
+        print "the dealer's second card is " + dealer_second_card + " for a total " + str(dealer_total)
 game()
